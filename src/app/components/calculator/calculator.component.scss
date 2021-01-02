@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+
+  .field-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.75rem;
+
+  span {
+    font-size: 12px;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.card {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 4px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.player-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

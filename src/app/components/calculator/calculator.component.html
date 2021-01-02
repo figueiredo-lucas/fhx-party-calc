@@ -1,0 +1,56 @@
+<div class="field-body card">
+  <label class="field">
+    <span>Party Level</span>
+    <input [(ngModel)]="partyLevel">
+  </label>
+  <label class="field">
+    <span>NPC Level</span>
+    <input [(ngModel)]="npcLevel">
+  </label>
+  <label class="field">
+    <span>NPC Base Exp</span>
+    <input [(ngModel)]="baseExp">
+  </label>
+  <button (click)="calculate()" [disabled]="!players.length">Calculate</button>
+</div>
+<div class="field-body card">
+  <label class="field">
+    <span>Player Level</span>
+    <input [(ngModel)]="player.level" (keyup.enter)="addPlayer()" [disabled]="players.length >= 8">
+  </label>
+  <button (click)="addPlayer()" [disabled]="!player.level || players.length >= 8">Add Player</button>
+  <p>Party Avg Level: {{getAvg() | number}}</p>
+  <div *ngFor="let p of players; index as index" class="player-list">
+    <app-player [player]="p"></app-player><button (click)="removePlayer(index)">&times;</button>
+  </div>
+</div>
+
+<div class="field-body card">
+  <label class="field">
+    <p>Level diff factor</p>
+    <span>If above</span>
+    <input [(ngModel)]="factors.exp.upper">
+    <span>If below</span>
+    <input [(ngModel)]="factors.exp.lower">
+  </label>
+  <label class="field">
+    <p>Avg diff factor</p>
+    <span>If above</span>
+    <input [(ngModel)]="factors.avg.upper">
+    <span>If below</span>
+    <input [(ngModel)]="factors.avg.lower">
+  </label>
+  <label class="field">
+    <p>Party level factor</p>
+    <span>Increment per level</span>
+    <input [(ngModel)]="factors.partyLevel">
+  </label>
+  <label class="field">
+    <p>Player Amount Factor</p>
+    <span>Increment per level</span>
+    <div>
+      <input type="number" *ngFor="let fac of factors.sharingPerc; index as index" [(ngModel)]="factors.sharingPerc[index]">
+    </div>
+  </label>
+  <button (click)="calculate()">Recalculate</button>
+</div>
