@@ -10,6 +10,8 @@ export class PlayerComponent implements OnInit {
 
   @Input()
   player: Player = {} as Player;
+  @Input()
+  amountOfPlayers: number = 0;
 
   constructor() { }
 

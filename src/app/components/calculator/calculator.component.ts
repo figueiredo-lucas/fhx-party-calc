@@ -46,4 +46,7 @@ export class CalculatorComponent implements OnInit {
     this.calculate();
   }
 
+  trackByFn(index: any, item: any) {
+    return index;
+ }
 }

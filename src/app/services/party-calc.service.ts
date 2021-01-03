@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 1 - 100 0
 */
 
-const SHARING_PERCENTAGE = [0, 0.2, 0.2, 0.166, 0.14, 0.12, 0.105, 0.089];
+const SHARING_PERCENTAGE = [0, 0.3, 0.216, 0.175, 0.145, 0.125, 0.1095, 0.0982];
 
 @Injectable({
   providedIn: 'root'
@@ -22,19 +22,19 @@ export class PartyCalcService {
 
   factors = {
     exp: {
-      upper: 1.06,
+      upper: 1.04,
       lower: 0.94
     },
     avg: {
-      upper: 1.08, // 1.02
-      lower: 0.88  // 0.94
+      upper: 1.02, // 1.02
+      lower: 0.94  // 0.94
     },
-    partyLevel: 0.06,
+    partyLevel: 0.055,
     sharingPerc: SHARING_PERCENTAGE
   }
 
   private calculateXp(baseExp: number, playerLevel: number, npcLevel: number, serverXpRate: number) {
-    if (playerLevel > npcLevel) {
+    if (playerLevel < npcLevel) {
       return baseExp * serverXpRate * Math.pow(this.factors.exp.upper, ((npcLevel - 1) - playerLevel));
     }
     return baseExp * serverXpRate * Math.pow(this.factors.exp.lower, (playerLevel - (npcLevel - 1)));
